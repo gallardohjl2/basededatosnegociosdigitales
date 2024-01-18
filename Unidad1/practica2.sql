@@ -31,3 +31,46 @@ create table empleado(
   check(salario>=400 and salario<=40000)
 )
 go
+
+create table producto(
+  productoId int not null, 
+  descripcion varchar(100) not null, 
+  existencia int not null, 
+  precio decimal(10,2) not null, 
+  constraint pk_producto
+  primary key(productoId),
+  constraint unico_descripcion
+  unique(descripcion)
+
+)
+
+create table venta(
+ ventaId int not null,
+ fecha date not null, 
+ empleadoId int not null, 
+ clienteId int not null,
+ constraint pk_venta 
+ primary key(ventaId),
+ constraint fk_venta_empleado
+ foreign key(empleadoId)
+ references empleado (empleadoid),
+ constraint fk_venta_cliente
+ foreign key(clienteId)
+ references cliente(clienteid)
+)
+
+create table detalleVenta
+(
+  ventaId int not null,
+  productoId int not null, 
+  cantidad int not null, 
+  precio decimal(10,2),
+  constraint pk_detalle
+  primary key(ventaId,productoId),
+  constraint fk_detalle_venta
+  foreign key(ventaId) 
+  references venta(ventaId),
+  constraint fk_detalle_producto
+  foreign key(productoId)
+  references producto(productoId)
+)

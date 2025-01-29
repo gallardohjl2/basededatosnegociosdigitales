@@ -61,9 +61,16 @@ day(OrderDate) as 'Día de la orden',
 CustomerID, EmployeeID 
 from Orders;
 
+-- Filas Duplicadas (Distinct)
+
+-- Mostrar los paises en donde se tienen clientes, 
+-- mostrando pais solamente
+select distinct Country From Customers
+order by country 
+
 -- Clausula where 
--- Operadores relacionales (<,>,=,<=,>=, != o <>)
-select * from Customers;
+-- Operadores relacionales o test de comparación (<,>,=,<=,>=, != o <>)
+
 
 -- Seleccionar el cliente BOLID
 
@@ -119,6 +126,55 @@ ShippedDate as 'Fecha de Envio',
 CustomerID as 'Cliente'
 from Orders
 where year(OrderDate) = '1996'
+
+-- Mostrar todas las ordenes de compra donde la cantidad 
+-- de productos comprados sea mayor a 40
+
+select * from [Order Details]
+where Quantity >= 40
+
+-- Mostra el nombre completo del empleado, su numero de empleado, 
+-- fecha de nacimiento, la ciudad y fecha de conrtratación y esta debe 
+-- ser de aquellos que fueron contratados despues de 1993, 
+-- Los resultados en sus encabezados deben ser mostrados en español
+
+select EmployeeID as 'Numero', 
+FirstName as 'Primer Nombre', 
+LastName as 'Apellido', BirthDate as 'Fecha Nacimiento', 
+city as 'Ciudad', HireDate as 'Fecha de Contratación'  
+from Employees
+where year(HireDate) > 1993
+
+
+select EmployeeID as 'Numero', 
+(FirstName + '  ' + LastName) as 'Nombre Completo' , BirthDate as 'Fecha Nacimiento', 
+city as 'Ciudad', HireDate as 'Fecha de Contratación'  
+from Employees
+where year(HireDate) > 1993
+
+
+select EmployeeID as 'Numero', 
+Concat(FirstName, ' ', LastName, ' - ', Title) as [Nombre Completo]
+,BirthDate as 'Fecha Nacimiento', 
+city as 'Ciudad', HireDate as 'Fecha de Contratación'  
+from Employees
+where year(HireDate) > 1993
+
+-- Mostrar los empleados que no son dirigidos por el jefe Fuller Andrew
+
+select EmployeeID as 'Numero', 
+Concat(FirstName, ' ', LastName, ' - ', Title) as [Nombre Completo]
+,BirthDate as 'Fecha Nacimiento', 
+city as 'Ciudad', HireDate as 'Fecha de Contratación', ReportsTo as 'Jefe' 
+from Employees
+where ReportsTo != 2
+
+-- Seleccionar los empleados que no tengan jefe
+select * from Employees
+where ReportsTo is null
+
+
+
 
 
 

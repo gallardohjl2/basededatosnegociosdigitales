@@ -434,6 +434,60 @@ select ProductName, CategoryID, unitprice
 	 from Employees
 	 where FirstName like 'A_____'
 
+	 -- seleccionar los productos que comiencen con A o B
+	 select * from 
+	 Products
+	 where ProductName like '[ABC]%'
+
+	 select * from 
+	 Products
+	 where ProductName like '[A-M]%'
+
+	 -- Seleccionatr todos los productos que no comiencen 
+	 -- con A o B
+
+	  select * from 
+	 Products
+	 where ProductName like '[^AB]%'
+
+	 -- Seleccionat todos los productos donde el nombre
+	 -- que comience con a  pero no contenga la e
+	 select * from 
+	 Products
+	 where ProductName like 'a[^e]%'
+
+-- Clausula order by
+
+select ProductID, ProductName, UnitPrice, UnitsInStock 
+from Products
+order by unitprice desc
+
+select ProductID, ProductName, UnitPrice, UnitsInStock 
+from Products
+order by 3 desc
+
+
+select ProductID, ProductName, UnitPrice as 'Precio', UnitsInStock 
+from Products
+order by 'Precio' desc
+
+-- Seleccionar los clientes ordenados por el pais y dentro por
+-- ciudad
+
+select CustomerID, country, city 
+from customers
+order by country asc, city asc
+
+
+select CustomerID, country, city, region
+from customers
+where (Country ='Brazil' or country ='Germany') 
+and region is not null
+order by country, city desc
+
+select * from Customers
+
+
 
 
 

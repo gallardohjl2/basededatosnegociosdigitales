@@ -73,12 +73,13 @@ exec spu_realizar_pedido @numPedido = 113070, @cliente = 2117,
 @repre=111, @fab = 'REI',
 @producto = '2A44L', @cantidad =20
 
-exec spu_realizar_pedido @numPedido = 113070, @cliente = 2117, 
-@repre=111, @fab = 'REI',
-@producto = '2A44L', @cantidad =20
+exec spu_realizar_pedido @numPedido = 113071, @cliente = 2117, 
+@repre=101, @fab = 'ACI',
+@producto = '4100X', @cantidad =20
 
-if not exists(select 1 from Clientes where Num_Cli = 2000)
-print ('ok')
+select * from Productos
+where Id_fab = 'ACI' and Id_producto = '4100x'
+
 
 
 select * from Pedidos
